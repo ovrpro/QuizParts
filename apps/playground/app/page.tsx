@@ -1,3 +1,5 @@
+'use client';
+
 import { REACT_VERSION } from '@quizparts/react';
 import { SCHEMA_VERSION } from '@quizparts/schema';
 import { THEME_VERSION } from '@quizparts/theme';

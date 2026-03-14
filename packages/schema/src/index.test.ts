@@ -119,6 +119,70 @@ describe('parseQuiz', () => {
       expect(result.errors.every((e) => typeof e.path === 'string' && typeof e.message === 'string')).toBe(true);
     }
   });
+
+  it('parses valid text_input question', () => {
+    const result = parseQuiz({
+      id: 't',
+      title: 'T',
+      questions: [
+        { id: 'q1', type: 'text_input', prompt: 'Say hi', answer: 'hi', explanation: 'Correct.' },
+      ],
+    });
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.questions[0].type).toBe('text_input');
+      expect((result.data.questions[0] as { answer: string }).answer).toBe('hi');
+    }
+  });
+
+  it('parses valid multi_select question', () => {
+    const result = parseQuiz({
+      id: 't',
+      title: 'T',
+      questions: [
+        {
+          id: 'q1',
+          type: 'multi_select',
+          prompt: 'Pick two',
+          choices: [
+            { id: 'a', text: 'A' },
+            { id: 'b', text: 'B' },
+            { id: 'c', text: 'C' },
+          ],
+          answer: ['a', 'c'],
+        },
+      ],
+    });
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.questions[0].type).toBe('multi_select');
+      expect((result.data.questions[0] as { answer: string[] }).answer).toEqual(['a', 'c']);
+    }
+  });
+
+  it('parses valid order_items question', () => {
+    const result = parseQuiz({
+      id: 't',
+      title: 'T',
+      questions: [
+        {
+          id: 'q1',
+          type: 'order_items',
+          prompt: 'Order these',
+          items: [
+            { id: 'x', text: 'First' },
+            { id: 'y', text: 'Second' },
+          ],
+          answer: ['x', 'y'],
+        },
+      ],
+    });
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.questions[0].type).toBe('order_items');
+      expect((result.data.questions[0] as { answer: string[] }).answer).toEqual(['x', 'y']);
+    }
+  });
 });
 
 describe('validateQuiz', () => {

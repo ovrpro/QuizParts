@@ -4,12 +4,15 @@ import {
   CORE_VERSION,
   createQuizSession,
   selectChoice,
+  toggleChoice,
   setTextInput,
+  setOrderedIds,
   submitAnswer,
   goToNextQuestion,
   goToPreviousQuestion,
   getProgress,
   resetQuiz,
+  checkCorrectness,
 } from './index.js';
 
 const validQuiz = parseQuiz({
@@ -138,5 +141,85 @@ describe('@quizparts/core', () => {
     const back = goToPreviousQuestion(session);
     expect(back.currentQuestionIndex).toBe(0);
     expect(back.questionStates[0]!.status).toBe('active');
+  });
+
+  it('toggleChoice adds and removes selection for multi_select', () => {
+    const multiQuiz = parseQuiz({
+      id: 'm',
+      title: 'M',
+      questions: [
+        {
+          id: 'q1',
+          type: 'multi_select',
+          prompt: '?',
+          choices: [
+            { id: 'a', text: 'A' },
+            { id: 'b', text: 'B' },
+          ],
+          answer: ['a'],
+        },
+      ],
+    });
+    if (!multiQuiz.success) throw new Error('parse failed');
+    let session = createQuizSession(multiQuiz.data);
+    session = toggleChoice(session, 0, 'a');
+    expect(session.questionStates[0]!.input.selectedChoiceIds).toEqual(['a']);
+    session = toggleChoice(session, 0, 'b');
+    expect(session.questionStates[0]!.input.selectedChoiceIds).toContain('a');
+    expect(session.questionStates[0]!.input.selectedChoiceIds).toContain('b');
+    session = toggleChoice(session, 0, 'a');
+    expect(session.questionStates[0]!.input.selectedChoiceIds).not.toContain('a');
+    expect(session.questionStates[0]!.input.selectedChoiceIds).toContain('b');
+  });
+
+  it('checkCorrectness: text_input caseInsensitive', () => {
+    const q = {
+      type: 'text_input' as const,
+      id: 'q1',
+      prompt: '?',
+      answer: 'Hello',
+      caseInsensitive: true,
+    };
+    expect(checkCorrectness(q, { text: 'hello' })).toBe(true);
+    expect(checkCorrectness(q, { text: 'HELLO' })).toBe(true);
+    expect(checkCorrectness(q, { text: 'hi' })).toBe(false);
+  });
+
+  it('checkCorrectness: multi_select', () => {
+    const q = {
+      type: 'multi_select' as const,
+      id: 'q1',
+      prompt: '?',
+      choices: [{ id: 'a', text: 'A' }, { id: 'b', text: 'B' }],
+      answer: ['a', 'b'],
+    };
+    expect(checkCorrectness(q, { selectedChoiceIds: ['a', 'b'] })).toBe(true);
+    expect(checkCorrectness(q, { selectedChoiceIds: ['b', 'a'] })).toBe(true);
+    expect(checkCorrectness(q, { selectedChoiceIds: ['a'] })).toBe(false);
+    expect(checkCorrectness(q, { selectedChoiceIds: ['a', 'b', 'a'] })).toBe(false);
+  });
+
+  it('setOrderedIds and submit correct order_items', () => {
+    const orderQuiz = parseQuiz({
+      id: 'o',
+      title: 'O',
+      questions: [
+        {
+          id: 'q1',
+          type: 'order_items',
+          prompt: 'Order',
+          items: [
+            { id: '1', text: 'One' },
+            { id: '2', text: 'Two' },
+          ],
+          answer: ['1', '2'],
+        },
+      ],
+    });
+    if (!orderQuiz.success) throw new Error('parse failed');
+    let session = createQuizSession(orderQuiz.data);
+    session = setOrderedIds(session, 0, ['1', '2']);
+    const { correct } = submitAnswer(session);
+    expect(correct).toBe(true);
   });
 });
