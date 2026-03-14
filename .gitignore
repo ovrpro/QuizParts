@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+.next/
+out/
+.turbo/
+
+# Testing
+coverage/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Env
+.env
+.env*.local
+
+# IDE / OS
+.DS_Store
+*.log
+*.tsbuildinfo
+
+# Vercel
+.vercel
