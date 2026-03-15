@@ -7,16 +7,16 @@ export default function DocsPage() {
       <h2 style={{ marginTop: '1.5rem' }}>Packages</h2>
       <ul>
         <li>
-          <strong>@quizparts/schema</strong> — Quiz and question types (multiple_choice, multi_select, text_input, etc.), <code>parseQuiz</code> and <code>validateQuiz</code> for JSON.
+          <strong>@quizparts/react</strong> — Start here. React UI: <code>QuizProvider</code>, <code>QuizRoot</code>, and primitives (<code>Progress</code>, <code>Question</code>, <code>Prompt</code>, <code>Choices</code>, <code>Choice</code>, <code>TextInput</code>, <code>MatchPairs</code>, <code>OrderList</code>, <code>SentenceBuilder</code>, <code>SubmitButton</code>, <code>NextButton</code>, <code>Feedback</code>). Re-exports <code>createQuizFromJson</code> from schema; use this package for the full quiz UI story.
         </li>
         <li>
-          <strong>@quizparts/core</strong> — Session state, <code>createQuizSession</code>, actions (<code>selectChoice</code>, <code>submitAnswer</code>, <code>goToNextQuestion</code>, etc.), and <code>checkCorrectness</code>.
+          <strong>@quizparts/theme</strong> — Theme tokens and default CSS (play.css) for web. Use with <code>@quizparts/react</code>.
         </li>
         <li>
-          <strong>@quizparts/react</strong> — <code>QuizProvider</code>, <code>QuizRoot</code>, and primitives: <code>Progress</code>, <code>Question</code>, <code>Prompt</code>, <code>Choices</code>, <code>Choice</code>, <code>TextInput</code>, <code>MatchPairs</code>, <code>OrderList</code>, <code>SentenceBuilder</code>, <code>SubmitButton</code>, <code>NextButton</code>, <code>Feedback</code>.
+          <strong>@quizparts/schema</strong> — Quiz and question types (multiple_choice, multi_select, text_input, etc.), <code>parseQuiz</code> and <code>validateQuiz</code> for JSON. Dependency of react; use directly for headless or custom UIs.
         </li>
         <li>
-          <strong>@quizparts/theme</strong> — Theme tokens (placeholder for now); theme switching is planned for Storybook and the Playground.
+          <strong>@quizparts/core</strong> — Session state, <code>createQuizSession</code>, actions (<code>selectChoice</code>, <code>submitAnswer</code>, <code>goToNextQuestion</code>, etc.), and <code>checkCorrectness</code>. Dependency of react; use directly for non-React or custom UIs.
         </li>
       </ul>
 

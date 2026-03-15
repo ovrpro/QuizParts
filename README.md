@@ -1,27 +1,28 @@
 # QuizParts
 
-Open-source framework for building quiz-style and study-practice interfaces (e.g. Duolingo-like experiences). Headless-first: JSON-driven schema, framework-agnostic core, and React (and React Native) bindings.
+Open-source framework for building quiz-style and study-practice interfaces (e.g. Duolingo-like experiences). **Start with `@quizparts/react`** for the full UI story; it includes the headless engine and schema support. Use `@quizparts/core` and `@quizparts/schema` directly only if you need a framework-agnostic or custom UI.
 
 ## Install
 
-Install the packages you need:
+**Web (React)** — the main package people use:
 
 ```bash
-# Schema (required for validation and types) + React UI
-npm install @quizparts/schema @quizparts/react @quizparts/theme
+npm install @quizparts/react @quizparts/theme
 # or
-yarn add @quizparts/schema @quizparts/react @quizparts/theme
+yarn add @quizparts/react @quizparts/theme
 ```
 
-For React Native:
+`@quizparts/react` depends on `@quizparts/schema` and `@quizparts/core`; you don’t need to install them separately unless you’re building a custom or headless integration.
+
+**React Native:**
 
 ```bash
-npm install @quizparts/schema @quizparts/react-native
+npm install @quizparts/react-native
 ```
 
 ## Quick start
 
-1. Define a quiz as JSON (or use `createQuizFromJson` / `parseQuiz` from `@quizparts/schema`).
+1. Define a quiz as JSON (or use `createQuizFromJson` from `@quizparts/react`).
 2. Wrap your app (or quiz section) in `QuizProvider` with the parsed quiz.
 3. Render `QuizFlow` for the full flow (questions + complete screen), or compose `Question`, `DefaultQuestionLayout`, and primitives yourself.
 
@@ -62,11 +63,11 @@ export default function App() {
 
 | Package | Description |
 |---------|-------------|
-| `@quizparts/schema` | Quiz and question types, validation, `parseQuiz` / `createQuizFromJson` |
-| `@quizparts/core` | Headless quiz engine (session, submit, progress) |
-| `@quizparts/react` | React provider, hooks, and headless components for web |
-| `@quizparts/react-native` | React Native components and theme for mobile |
-| `@quizparts/theme` | Theme tokens and default CSS (play.css) for web |
+| **`@quizparts/react`** | **Start here.** React provider, components, and hooks for web (QuizProvider, QuizRoot, Question, Choices, Feedback, etc.). Includes engine + schema. |
+| `@quizparts/theme` | Theme tokens and default CSS (play.css) for web. Use with `@quizparts/react`. |
+| `@quizparts/react-native` | React Native components and theme for mobile. |
+| `@quizparts/schema` | Quiz and question types, validation, `parseQuiz` / `createQuizFromJson`. Dependency of react; use directly for headless/custom UIs. |
+| `@quizparts/core` | Headless quiz engine (session, submit, progress). Dependency of react; use directly for non-React or custom UIs. |
 
 ## Documentation
 

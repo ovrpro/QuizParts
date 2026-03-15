@@ -5,11 +5,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/quizparts/quizparts.git"
+    "url": "https://github.com/ovrpro/QuizParts.git"
   },
-  "homepage": "https://github.com/quizparts/quizparts#readme",
+  "homepage": "https://github.com/ovrpro/QuizParts#readme",
   "bugs": {
-    "url": "https://github.com/quizparts/quizparts/issues"
+    "url": "https://github.com/ovrpro/QuizParts/issues"
   },
   "keywords": ["quiz", "theme", "css", "design-tokens", "learning"],
   "type": "module",
@@ -23,6 +23,7 @@
     "./play.css": "./dist/play.css"
   },
   "files": ["dist"],
+  "publishConfig": { "access": "public" },
   "scripts": {
     "build": "tsc && cp src/play.css dist/play.css",
     "lint": "eslint src --ext .ts",

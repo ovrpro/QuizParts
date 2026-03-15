@@ -4,17 +4,17 @@ export default function GetStartedPage() {
       <h1>Get started</h1>
 
       <h2 style={{ marginTop: '1.5rem' }}>Install</h2>
-      <p>In a monorepo with Yarn workspaces, add the packages to your app:</p>
+      <p>Install the React UI package (and the theme for default styles). It brings in the engine and schema for you.</p>
       <pre style={{ background: '#f5f5f5', padding: '1rem', overflow: 'auto', borderRadius: '4px' }}>
-{`yarn add @quizparts/schema @quizparts/core @quizparts/react`}
+{`yarn add @quizparts/react @quizparts/theme`}
       </pre>
       <p>Or with npm:</p>
       <pre style={{ background: '#f5f5f5', padding: '1rem', overflow: 'auto', borderRadius: '4px' }}>
-{`npm install @quizparts/schema @quizparts/core @quizparts/react`}
+{`npm install @quizparts/react @quizparts/theme`}
       </pre>
 
       <h2 style={{ marginTop: '1.5rem' }}>Define a quiz (JSON)</h2>
-      <p>Quizzes are plain JSON. Parse with <code>parseQuiz</code> from <code>@quizparts/schema</code>.</p>
+      <p>Quizzes are plain JSON. You can use <code>createQuizFromJson</code> or <code>parseQuiz</code> from <code>@quizparts/react</code> (re-exported from <code>@quizparts/schema</code>).</p>
       <pre style={{ background: '#f5f5f5', padding: '1rem', overflow: 'auto', borderRadius: '4px', fontSize: '13px' }}>
 {`const quizJson = {
   id: 'my-quiz',
