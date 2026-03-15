@@ -23,7 +23,7 @@ describe('@quizparts/theme', () => {
     expect(defaultTheme.semantic.color.primary).toBeDefined();
     expect(defaultTheme.foundation.spacing.md).toBeDefined();
     expect(defaultTheme.foundation.radius.md).toBeDefined();
-    expect(defaultTheme.foundation.typography.fontFamily).toContain('Avenir Next Condensed');
+    expect(defaultTheme.foundation.typography.fontFamily).toContain('Nunito Sans');
   });
 
   it('darkTheme (midnight) has dark semantic colors', () => {

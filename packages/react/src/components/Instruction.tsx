@@ -1,24 +1,32 @@
 import type { ReactNode } from 'react';
+import { useQuestion } from '../hooks/useQuestion.js';
+import { DEFAULT_INSTRUCTIONS } from '../constants/defaultInstructions.js';
 
 export interface InstructionProps {
-  /** Instructional copy (e.g. "Select all that apply", "Match the pairs"). */
+  /** Instructional copy. When omitted, uses default for current question type (e.g. "Choose one.", "Select all that apply."). */
   instruction?: string;
   children?: ReactNode;
   as?: keyof JSX.IntrinsicElements;
 }
 
-/** Short instruction separate from the main prompt. Renders nothing if no instruction or children. */
+/** Short instruction separate from the main prompt. Uses default by question type when instruction is not provided. */
 export const Instruction = ({
-  instruction,
+  instruction: instructionProp,
   children,
   as: Component = 'p',
 }: InstructionProps) => {
-  const hasInstruction = instruction != null && instruction !== '';
+  const { question } = useQuestion();
+  const instruction =
+    instructionProp != null && instructionProp !== ''
+      ? instructionProp
+      : question && question.type in DEFAULT_INSTRUCTIONS
+        ? DEFAULT_INSTRUCTIONS[question.type as keyof typeof DEFAULT_INSTRUCTIONS]
+        : null;
   const hasChildren = children != null;
-  if (!hasInstruction && !hasChildren) return null;
+  if (!instruction && !hasChildren) return null;
   return (
     <Component data-quiz-instruction>
-      {hasInstruction ? instruction : children}
+      {instruction ?? children}
     </Component>
   );
 };

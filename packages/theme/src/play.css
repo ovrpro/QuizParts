@@ -65,6 +65,7 @@
 [data-quiz-question-footer] {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: var(--qp-foundation-spacing-md);
   margin-top: var(--qp-foundation-spacing-md);
   padding-top: var(--qp-foundation-spacing-md);
@@ -77,6 +78,17 @@
   margin-top: 0;
   margin-left: 0;
   margin-right: 0;
+}
+
+[data-quiz-question-footer] [data-quiz-feedback] {
+  margin-top: 0;
+  height: var(--qp-components-button-height);
+  min-height: var(--qp-components-button-height);
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--qp-foundation-spacing-lg);
+  line-height: 1;
+  box-sizing: border-box;
 }
 
 [data-quiz-instruction] {
@@ -139,10 +151,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  height: var(--qp-components-button-height);
   min-height: var(--qp-components-button-height);
   margin-top: var(--qp-foundation-spacing-xl);
   margin-left: var(--qp-foundation-spacing-md);
-  padding: var(--qp-foundation-spacing-md) var(--qp-components-button-paddingX);
+  padding: 0 var(--qp-components-button-paddingX);
+  line-height: 1;
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
   font-weight: var(--qp-foundation-typography-fontWeightBold);
@@ -277,10 +291,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  height: var(--qp-components-button-height);
   min-height: var(--qp-components-button-height);
   margin-top: var(--qp-foundation-spacing-xl);
   margin-right: var(--qp-foundation-spacing-md);
-  padding: var(--qp-foundation-spacing-md) var(--qp-components-button-paddingX);
+  padding: 0 var(--qp-components-button-paddingX);
+  line-height: 1;
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
   font-weight: var(--qp-foundation-typography-fontWeightBold);
@@ -318,10 +334,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  height: var(--qp-components-button-height);
   min-height: var(--qp-components-button-height);
   margin-top: var(--qp-foundation-spacing-xl);
   margin-left: var(--qp-foundation-spacing-md);
-  padding: var(--qp-foundation-spacing-md) var(--qp-components-button-paddingX);
+  padding: 0 var(--qp-components-button-paddingX);
+  line-height: 1;
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
   font-weight: var(--qp-foundation-typography-fontWeightBold);
@@ -379,6 +397,47 @@
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--qp-semantic-color-textMuted);
+}
+
+[data-quiz-complete] {
+  padding: var(--qp-foundation-spacing-xl);
+  text-align: center;
+  font-family: var(--qp-foundation-typography-fontFamily);
+  color: var(--qp-semantic-color-text);
+}
+
+[data-quiz-complete] h2 {
+  margin: 0 0 var(--qp-foundation-spacing-md) 0;
+  font-size: var(--qp-foundation-typography-fontSizeLg);
+  font-weight: var(--qp-foundation-typography-fontWeightBold);
+  color: var(--qp-semantic-color-text);
+}
+
+[data-quiz-complete] p {
+  margin: 0;
+  font-size: var(--qp-foundation-typography-fontSizeBase);
+  line-height: 1.5;
+  color: var(--qp-semantic-color-textMuted);
+}
+
+[data-quiz-complete] button {
+  margin-top: var(--qp-foundation-spacing-lg);
+  padding: var(--qp-foundation-spacing-md) var(--qp-foundation-spacing-xl);
+  font-family: var(--qp-foundation-typography-fontFamily);
+  font-size: var(--qp-foundation-typography-fontSizeBase);
+  font-weight: var(--qp-foundation-typography-fontWeightBold);
+  color: var(--qp-semantic-color-primary);
+  background: color-mix(in srgb, var(--qp-semantic-color-primary) 8%, white);
+  border: 2px solid var(--qp-semantic-color-primary);
+  border-radius: var(--qp-components-button-radius);
+  cursor: pointer;
+  transition:
+    background-color var(--qp-motion-durationFast) var(--qp-motion-easingStandard),
+    border-color var(--qp-motion-durationFast) var(--qp-motion-easingStandard);
+}
+
+[data-quiz-complete] button:hover {
+  background: color-mix(in srgb, var(--qp-semantic-color-primary) 14%, white);
 }
 
 [data-quiz-progress] {

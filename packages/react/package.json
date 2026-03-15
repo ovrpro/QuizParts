@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "@quizparts/core": "0.0.1",
-    "@quizparts/schema": "0.0.1"
+    "@quizparts/schema": "0.0.1",
+    "@quizparts/theme": "0.0.1"
   },
   "peerDependencies": {
     "react": ">=18"

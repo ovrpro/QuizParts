@@ -1,14 +1,17 @@
 import type { ReactNode } from 'react';
 import { useQuestion } from '../hooks/useQuestion.js';
+import { ChoiceIndicator } from './ChoiceIndicator.js';
 
 export interface ChoiceProps {
   /** Id of the choice (must match question.choices[].id). */
   choiceId: string;
+  /** When true, renders ChoiceIndicator before the label (default false). */
+  showIndicator?: boolean;
   children?: ReactNode;
 }
 
 /** Renders one multiple_choice or multi_select option. Use inside Choices; toggles/selects on click. */
-export const Choice = ({ choiceId, children }: ChoiceProps) => {
+export const Choice = ({ choiceId, showIndicator = false, children }: ChoiceProps) => {
   const { question, selectedChoiceId, selectedChoiceIds, selectChoice, toggleChoice, isSubmitted } = useQuestion();
   if (!question || (question.type !== 'multiple_choice' && question.type !== 'multi_select'))
     return null;
@@ -31,6 +34,15 @@ export const Choice = ({ choiceId, children }: ChoiceProps) => {
     else selectChoice(choiceId);
   };
 
+  const label = children ?? choice.text;
+  const content = showIndicator ? (
+    <>
+      <ChoiceIndicator choiceId={choiceId} variant={isMultiSelect ? 'checkbox' : 'radio'} />
+      {' '}
+      {label}
+    </>
+  ) : label;
+
   return (
     <button
       type="button"
@@ -52,7 +64,7 @@ export const Choice = ({ choiceId, children }: ChoiceProps) => {
         }
       }}
     >
-      {children ?? choice.text}
+      {content}
     </button>
   );
 };

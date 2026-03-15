@@ -41,7 +41,7 @@ export const playTheme: ThemeTokens = {
       button: '0 14px 30px rgba(37,99,235,0.28)',
     },
     typography: {
-      fontFamily: '"Avenir Next Condensed", "Avenir Next", "Franklin Gothic Medium", "Arial Narrow", sans-serif',
+      fontFamily: '"Nunito Sans", "Avenir Next", "Segoe UI", sans-serif',
       fontSizeBase: '17px',
       fontSizeSm: '13px',
       fontSizeLg: '24px',
