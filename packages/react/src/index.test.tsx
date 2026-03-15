@@ -99,7 +99,7 @@ describe('@quizparts/react', () => {
         </Question>
       </QuizProvider>
     );
-    const submitBtn = screen.getAllByRole('button').find((b) => b.textContent === 'Submit');
+    const submitBtn = screen.getAllByRole('button').find((b) => b.textContent === 'Answer');
     expect(submitBtn).toBeDisabled();
   });
 
@@ -141,7 +141,7 @@ describe('@quizparts/react', () => {
     const choiceB = document.querySelector('[data-choice-id="b"]');
     if (choiceB) await act(() => user.click(choiceB as HTMLElement));
     expect(choiceB).toHaveAttribute('data-selected');
-    const submitBtn = screen.getAllByRole('button').find((b) => b.textContent === 'Submit');
+    const submitBtn = screen.getAllByRole('button').find((b) => b.textContent === 'Answer');
     if (submitBtn) await act(() => user.click(submitBtn));
     expect(screen.getByText('Correct!')).toBeInTheDocument();
     expect(screen.getByText('2+2 equals 4.')).toBeInTheDocument();
@@ -166,7 +166,7 @@ describe('@quizparts/react', () => {
     expect(screen.getByLabelText(/Question 1 of 2/)).toBeInTheDocument();
     const choiceB = document.querySelector('[data-choice-id="b"]');
     if (choiceB) await act(() => user.click(choiceB as HTMLElement));
-    const submitBtn = screen.getAllByRole('button').find((b) => b.textContent === 'Submit');
+    const submitBtn = screen.getAllByRole('button').find((b) => b.textContent === 'Answer');
     if (submitBtn) await act(() => user.click(submitBtn));
     const nextBtn = screen.getByRole('button', { name: 'Next' });
     await act(() => user.click(nextBtn));
@@ -188,7 +188,7 @@ describe('@quizparts/react', () => {
     );
     const input = screen.getByRole('textbox');
     await act(() => user.type(input, 'hello'));
-    const submitBtn = screen.getAllByRole('button').find((b) => b.textContent === 'Submit');
+    const submitBtn = screen.getAllByRole('button').find((b) => b.textContent === 'Answer');
     if (submitBtn) await act(() => user.click(submitBtn));
     expect(screen.getByText('Correct!')).toBeInTheDocument();
   });
@@ -233,7 +233,7 @@ describe('@quizparts/react', () => {
     const choiceB = document.querySelector('[data-choice-id="b"]');
     if (!choiceB) throw new Error('Choice b not found');
     await act(() => user.click(choiceB as HTMLElement));
-    const submitBtn = screen.getAllByRole('button').find((b) => b.textContent === 'Submit');
+    const submitBtn = screen.getAllByRole('button').find((b) => b.textContent === 'Answer');
     if (submitBtn) await act(() => user.click(submitBtn));
     expect(screen.getByText('Score: 1')).toBeInTheDocument();
     await act(() => user.click(screen.getByRole('button', { name: 'Reset' })));
