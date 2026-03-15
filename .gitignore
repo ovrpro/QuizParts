@@ -25,3 +25,6 @@ playwright/.cache/
 
 # Vercel
 .vercel
+
+# Planning and tasks (not for open source)
+planning/

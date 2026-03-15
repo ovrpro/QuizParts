@@ -1,11 +1,85 @@
 # QuizParts
 
-Open-source framework for building quiz-style and study-practice interfaces (e.g. Duolingo-like experiences).
+Open-source framework for building quiz-style and study-practice interfaces (e.g. Duolingo-like experiences). Headless-first: JSON-driven schema, framework-agnostic core, and React (and React Native) bindings.
 
-- **Headless-first:** JSON-driven schema, framework-agnostic core, React bindings.
-- **Docs:** [TASK.md](TASK.md) (goals, milestones), [INFRASTRUCTURE.md](INFRASTRUCTURE.md) (stack, CI/CD, deployment).
+## Install
+
+Install the packages you need:
+
+```bash
+# Schema (required for validation and types) + React UI
+npm install @quizparts/schema @quizparts/react @quizparts/theme
+# or
+yarn add @quizparts/schema @quizparts/react @quizparts/theme
+```
+
+For React Native:
+
+```bash
+npm install @quizparts/schema @quizparts/react-native
+```
+
+## Quick start
+
+1. Define a quiz as JSON (or use `createQuizFromJson` / `parseQuiz` from `@quizparts/schema`).
+2. Wrap your app (or quiz section) in `QuizProvider` with the parsed quiz.
+3. Render `QuizFlow` for the full flow (questions + complete screen), or compose `Question`, `DefaultQuestionLayout`, and primitives yourself.
+
+**Minimal example (web):**
+
+```tsx
+import { QuizProvider, QuizRoot, QuizFlow, createQuizFromJson } from '@quizparts/react';
+import '@quizparts/theme/play.css';
+
+const quiz = createQuizFromJson({
+  id: 'demo',
+  title: 'Demo Quiz',
+  questions: [
+    {
+      id: 'q1',
+      type: 'multiple_choice',
+      prompt: 'What is 2 + 2?',
+      choices: [{ id: 'a', text: '3' }, { id: 'b', text: '4' }],
+      answer: 'b',
+    },
+  ],
+});
+
+export default function App() {
+  return (
+    <QuizProvider quiz={quiz}>
+      <QuizRoot>
+        <QuizFlow />
+      </QuizRoot>
+    </QuizProvider>
+  );
+}
+```
+
+**React Native:** Use `ThemeProvider`, `QuizProvider`, `QuizRoot`, and `QuizFlow` from `@quizparts/react-native`; no CSS import.
+
+## Packages
+
+| Package | Description |
+|---------|-------------|
+| `@quizparts/schema` | Quiz and question types, validation, `parseQuiz` / `createQuizFromJson` |
+| `@quizparts/core` | Headless quiz engine (session, submit, progress) |
+| `@quizparts/react` | React provider, hooks, and headless components for web |
+| `@quizparts/react-native` | React Native components and theme for mobile |
+| `@quizparts/theme` | Theme tokens and default CSS (play.css) for web |
+
+## Documentation
+
+See the [docs](apps/docs) app in this repository for installation, concepts, and API details. A [playground](apps/playground) app is included to try quiz JSON and themes live.
+
+## Compatibility
+
+- **Node:** 18+
+- **React:** 18+ (for `@quizparts/react` and `@quizparts/react-native`)
 
 ## Development
+
+From a clone of the repository:
 
 ```bash
 yarn install
@@ -13,23 +87,11 @@ yarn build
 yarn dev
 ```
 
-- `yarn dev` — starts docs (port 3000) and playground (port 3001) with HMR.
+- `yarn dev` — starts docs and playground with HMR.
 - `yarn lint` / `yarn typecheck` / `yarn test` — quality checks across the monorepo.
-- `yarn test:e2e` — Playwright E2E tests (starts apps automatically).
+- `yarn test:e2e` — Playwright E2E tests.
 
-## Packages
-
-| Package | Description |
-|---------|-------------|
-| `@quizparts/schema` | Quiz and question types, validation |
-| `@quizparts/core` | Headless quiz engine |
-| `@quizparts/react` | React provider and headless components |
-| `@quizparts/theme` | Theme tokens |
-
-## Apps
-
-- **docs** — Documentation and quickstart.
-- **playground** — Live quiz JSON editor and preview.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute.
 
 ## License
 

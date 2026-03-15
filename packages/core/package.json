@@ -1,7 +1,17 @@
 {
   "name": "@quizparts/core",
   "version": "0.0.1",
+  "description": "Headless quiz engine for QuizParts (session, submit, progress)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quizparts/quizparts.git"
+  },
+  "homepage": "https://github.com/quizparts/quizparts#readme",
+  "bugs": {
+    "url": "https://github.com/quizparts/quizparts/issues"
+  },
+  "keywords": ["quiz", "headless", "engine", "learning", "typescript"],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

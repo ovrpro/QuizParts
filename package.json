@@ -1,6 +1,14 @@
 {
   "name": "quizparts",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quizparts/quizparts.git"
+  },
+  "homepage": "https://github.com/quizparts/quizparts#readme",
+  "bugs": {
+    "url": "https://github.com/quizparts/quizparts/issues"
+  },
   "workspaces": [
     "packages/*",
     "apps/*",
