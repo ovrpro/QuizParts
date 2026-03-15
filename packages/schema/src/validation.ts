@@ -274,3 +274,11 @@ export function validateQuiz(quiz: Quiz): ValidateResult {
   if (errors.length > 0) return { valid: false, errors };
   return { valid: true };
 }
+
+/** Parse quiz JSON or throw. Use when you want to fail fast on invalid data. */
+export function createQuizFromJson(json: unknown): Quiz {
+  const result = parseQuiz(json);
+  if (result.success) return result.data;
+  const message = result.errors.map((e) => `${e.path}: ${e.message}`).join('; ');
+  throw new Error(`Invalid quiz: ${message}`);
+}

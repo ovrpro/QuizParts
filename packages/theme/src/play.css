@@ -82,13 +82,20 @@
 
 [data-quiz-question-footer] [data-quiz-feedback] {
   margin-top: 0;
-  height: var(--qp-components-button-height);
-  min-height: var(--qp-components-button-height);
-  display: inline-flex;
-  align-items: center;
-  padding: 0 var(--qp-foundation-spacing-lg);
-  line-height: 1;
-  box-sizing: border-box;
+  flex-basis: 100%;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  display: block;
+  padding: var(--qp-foundation-spacing-md) 0 0 0;
+  font-size: var(--qp-foundation-typography-fontSizeBase);
+  font-weight: var(--qp-foundation-typography-fontWeightNormal);
+  text-transform: none;
+  letter-spacing: normal;
+  border-radius: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
 }
 
 [data-quiz-instruction] {
@@ -147,6 +154,7 @@
   color: var(--qp-semantic-color-textMuted);
 }
 
+/* Skip / Continue: tertiary style (muted, de-emphasized vs Answer) */
 [data-quiz-continue] {
   display: inline-flex;
   align-items: center;
@@ -159,23 +167,24 @@
   line-height: 1;
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
-  font-weight: var(--qp-foundation-typography-fontWeightBold);
-  letter-spacing: 0.06em;
+  font-weight: var(--qp-foundation-typography-fontWeightNormal);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--qp-semantic-color-primary);
-  background: color-mix(in srgb, var(--qp-semantic-color-primary) 6%, white);
-  border: 2px solid color-mix(in srgb, var(--qp-semantic-color-primary) 78%, var(--qp-semantic-color-secondary));
+  color: var(--qp-semantic-color-textMuted);
+  background: transparent;
+  border: 1px solid transparent;
   border-radius: var(--qp-components-button-radius);
   cursor: pointer;
   transition:
-    transform var(--qp-motion-durationFast) var(--qp-motion-easingStandard),
+    color var(--qp-motion-durationFast) var(--qp-motion-easingStandard),
     border-color var(--qp-motion-durationFast) var(--qp-motion-easingStandard),
     background-color var(--qp-motion-durationFast) var(--qp-motion-easingStandard);
 }
 
 [data-quiz-continue]:hover:not([data-disabled]) {
-  background: color-mix(in srgb, var(--qp-semantic-color-primary) 14%, white);
-  transform: translateY(-1px) scale(var(--qp-interaction-hoverScale));
+  color: var(--qp-semantic-color-primary);
+  background: color-mix(in srgb, var(--qp-semantic-color-primary) 6%, transparent);
+  border-color: color-mix(in srgb, var(--qp-semantic-color-border) 80%, transparent);
 }
 
 [data-quiz-continue]:active:not([data-disabled]) {
@@ -185,7 +194,6 @@
 [data-quiz-continue][data-disabled] {
   opacity: 0.5;
   cursor: not-allowed;
-  border-color: var(--qp-semantic-color-border);
   color: var(--qp-semantic-color-textMuted);
 }
 
@@ -391,6 +399,21 @@
   border: 1px solid var(--qp-states-incorrect-border);
 }
 
+[data-quiz-question-footer] [data-quiz-feedback][data-correct],
+[data-quiz-question-footer] [data-quiz-feedback][data-incorrect] {
+  background: none;
+  border: none;
+  color: var(--qp-semantic-color-textMuted);
+}
+
+[data-quiz-question-footer] [data-quiz-feedback][data-correct] {
+  color: var(--qp-semantic-color-success);
+}
+
+[data-quiz-question-footer] [data-quiz-feedback][data-incorrect] {
+  color: var(--qp-semantic-color-danger);
+}
+
 [data-quiz-explanation] {
   margin: var(--qp-foundation-spacing-sm) 0 0 0;
   font-size: var(--qp-foundation-typography-fontSizeSm);
@@ -577,14 +600,19 @@
   gap: var(--qp-foundation-spacing-lg);
 }
 
+[data-quiz-match-pairs] [role="group"] {
+  min-width: 8rem;
+}
+
 [data-quiz-match-pairs] [data-match-left],
 [data-quiz-match-pairs] [data-match-right],
 [data-quiz-match-pairs] [data-match-pair] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 0;
+  min-width: 6rem;
   min-height: var(--qp-a11y-minTapTarget);
+  box-sizing: border-box;
   padding: var(--qp-foundation-spacing-md) var(--qp-foundation-spacing-lg);
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);

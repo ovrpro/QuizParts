@@ -5,8 +5,8 @@ export interface ContinueButtonProps {
   children?: ReactNode;
 }
 
-/** Advances to the next question after submit. Same behavior as NextButton; default label "Continue". */
-export const ContinueButton = ({ children = 'Continue' }: ContinueButtonProps) => {
+/** Advances to the next question after submit. Same behavior as NextButton; default label "Skip". */
+export const ContinueButton = ({ children = 'Skip' }: ContinueButtonProps) => {
   const { canGoNext, goToNextQuestion } = useQuiz();
   return (
     <button

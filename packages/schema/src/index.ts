@@ -9,7 +9,7 @@ export type {
   ParseResult,
   ValidateResult,
 } from './validation.js';
-export { parseQuiz, validateQuiz } from './validation.js';
+export { parseQuiz, validateQuiz, createQuizFromJson } from './validation.js';
 
 /** Current schema version (semver) */
 export const SCHEMA_VERSION = '0.0.1';
