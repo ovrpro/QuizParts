@@ -1,27 +1,44 @@
 /* QuizParts – theme styles. Use with theme CSS variables set on an ancestor. */
 
 [data-quiz-root] {
+  position: relative;
+  overflow: hidden;
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
   line-height: var(--qp-foundation-typography-lineHeight);
+  letter-spacing: 0.01em;
   color: var(--qp-semantic-color-text);
-  background: var(--qp-semantic-color-background);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--qp-semantic-color-secondary) 18%, transparent), transparent 38%),
+    radial-gradient(circle at top left, color-mix(in srgb, var(--qp-semantic-color-primary) 20%, transparent), transparent 34%),
+    linear-gradient(160deg, color-mix(in srgb, var(--qp-semantic-color-background) 92%, white) 0%, var(--qp-semantic-color-background) 100%);
 }
 
 [data-quiz-question] {
-  background: var(--qp-semantic-color-surface);
-  border: 1px solid var(--qp-semantic-color-border);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--qp-semantic-color-surface) 92%, white) 0%, var(--qp-semantic-color-surface) 100%);
+  border: 1px solid color-mix(in srgb, var(--qp-semantic-color-border) 78%, white);
   border-radius: var(--qp-components-card-radius);
   box-shadow: var(--qp-components-card-shadow);
   padding: var(--qp-components-card-padding);
-  transition: box-shadow var(--qp-motion-durationFast) var(--qp-motion-easingStandard);
+  backdrop-filter: blur(12px);
+  transition:
+    box-shadow var(--qp-motion-durationFast) var(--qp-motion-easingStandard),
+    transform var(--qp-motion-durationFast) var(--qp-motion-easingStandard);
+}
+
+[data-quiz-question]:hover {
+  transform: translateY(-2px);
 }
 
 [data-quiz-prompt] {
   font-size: var(--qp-foundation-typography-fontSizeLg);
   font-weight: var(--qp-foundation-typography-fontWeightBold);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
   margin: 0 0 var(--qp-foundation-spacing-lg) 0;
   color: var(--qp-semantic-color-text);
+  text-wrap: balance;
 }
 
 [data-quiz-choices] {
@@ -38,9 +55,11 @@
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
   font-weight: var(--qp-foundation-typography-fontWeightNormal);
+  line-height: 1.35;
   text-align: left;
   color: var(--qp-semantic-color-text);
-  background: var(--qp-semantic-color-surface);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--qp-semantic-color-surface) 88%, white) 0%, var(--qp-semantic-color-surface) 100%);
   border: var(--qp-components-choice-borderWidth) solid var(--qp-semantic-color-border);
   border-radius: var(--qp-components-choice-radius);
   cursor: pointer;
@@ -53,8 +72,10 @@
 
 [data-choice]:hover:not([data-disabled]) {
   border-color: var(--qp-semantic-color-primary);
-  background: var(--qp-semantic-color-surface);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--qp-semantic-color-primary) 6%, white) 0%, var(--qp-semantic-color-surface) 100%);
   box-shadow: var(--qp-foundation-shadow-sm);
+  transform: translateY(-1px) scale(var(--qp-interaction-hoverScale));
 }
 
 [data-choice]:active:not([data-disabled]) {
@@ -92,8 +113,11 @@
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
   font-weight: var(--qp-foundation-typography-fontWeightBold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--qp-semantic-color-primaryContrast);
-  background: var(--qp-semantic-color-primary);
+  background:
+    linear-gradient(135deg, var(--qp-semantic-color-secondary) 0%, var(--qp-semantic-color-primary) 52%, color-mix(in srgb, var(--qp-semantic-color-primary) 72%, white) 100%);
   border: none;
   border-radius: var(--qp-components-button-radius);
   box-shadow: var(--qp-foundation-shadow-button);
@@ -105,8 +129,9 @@
 }
 
 [data-quiz-submit]:hover:not([data-disabled]) {
-  filter: brightness(1.06);
+  filter: saturate(1.08) brightness(1.03);
   box-shadow: var(--qp-foundation-shadow-md);
+  transform: translateY(-1px) scale(var(--qp-interaction-hoverScale));
 }
 
 [data-quiz-submit]:active:not([data-disabled]) {
@@ -129,9 +154,11 @@
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
   font-weight: var(--qp-foundation-typography-fontWeightBold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--qp-semantic-color-primary);
-  background: var(--qp-semantic-color-surface);
-  border: 2px solid var(--qp-semantic-color-primary);
+  background: color-mix(in srgb, var(--qp-semantic-color-primary) 6%, white);
+  border: 2px solid color-mix(in srgb, var(--qp-semantic-color-primary) 78%, var(--qp-semantic-color-secondary));
   border-radius: var(--qp-components-button-radius);
   cursor: pointer;
   transition:
@@ -141,7 +168,8 @@
 }
 
 [data-quiz-next]:hover:not([data-disabled]) {
-  background: color-mix(in srgb, var(--qp-semantic-color-primary) 10%, var(--qp-semantic-color-surface));
+  background: color-mix(in srgb, var(--qp-semantic-color-primary) 14%, white);
+  transform: translateY(-1px) scale(var(--qp-interaction-hoverScale));
 }
 
 [data-quiz-next]:active:not([data-disabled]) {
@@ -160,6 +188,7 @@
   padding: var(--qp-components-feedback-padding);
   border-radius: var(--qp-components-feedback-radius);
   font-weight: var(--qp-foundation-typography-fontWeightNormal);
+  line-height: 1.45;
   transition: background-color var(--qp-motion-durationNormal) var(--qp-motion-easingStandard);
 }
 
@@ -176,6 +205,8 @@
 [data-quiz-explanation] {
   margin: var(--qp-foundation-spacing-sm) 0 0 0;
   font-size: var(--qp-foundation-typography-fontSizeSm);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   color: var(--qp-semantic-color-textMuted);
 }
 
@@ -192,16 +223,20 @@
   content: "";
   width: 100%;
   height: var(--qp-components-progress-height);
-  background: color-mix(in srgb, var(--qp-semantic-color-primary) 22%, transparent);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--qp-semantic-color-secondary) 72%, white) 0%, color-mix(in srgb, var(--qp-semantic-color-primary) 40%, white) 100%);
   border-radius: var(--qp-components-progress-radius);
   order: 0;
   flex: 0 0 100%;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.12);
 }
 
 [data-quiz-progress-text],
 [data-quiz-progress-percent],
 [data-quiz-progress-score] {
   font-size: var(--qp-foundation-typography-fontSizeSm);
+  font-weight: var(--qp-foundation-typography-fontWeightBold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--qp-semantic-color-textMuted);
 }
 

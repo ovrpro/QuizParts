@@ -23,6 +23,7 @@ describe('@quizparts/theme', () => {
     expect(defaultTheme.semantic.color.primary).toBeDefined();
     expect(defaultTheme.foundation.spacing.md).toBeDefined();
     expect(defaultTheme.foundation.radius.md).toBeDefined();
+    expect(defaultTheme.foundation.typography.fontFamily).toContain('Avenir Next Condensed');
   });
 
   it('darkTheme (midnight) has dark semantic colors', () => {
@@ -46,13 +47,14 @@ describe('@quizparts/theme', () => {
 
   it('tokensToCssVars produces --qp- prefixed vars', () => {
     const vars = tokensToCssVars(defaultTheme);
-    expect(vars['--qp-semantic-color-primary']).toBe('#0ea5e9');
-    expect(vars['--qp-foundation-spacing-md']).toBe('14px');
+    expect(vars['--qp-semantic-color-primary']).toBe('#2563eb');
+    expect(vars['--qp-foundation-spacing-md']).toBe('16px');
+    expect(vars['--qp-foundation-typography-fontSizeLg']).toBe('24px');
   });
 
   it('tokensToCssVarsString returns semicolon-separated string', () => {
     const s = tokensToCssVarsString(defaultTheme);
     expect(s).toContain('--qp-semantic-color-primary');
-    expect(s).toContain('#0ea5e9');
+    expect(s).toContain('#2563eb');
   });
 });
