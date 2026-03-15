@@ -18,8 +18,24 @@ export const useQuiz = () => {
     if (q.type === 'multiple_choice') {
       return typeof state.input.selectedChoiceId === 'string' && state.input.selectedChoiceId.length > 0;
     }
+    if (q.type === 'multi_select') {
+      const ids = state.input.selectedChoiceIds ?? [];
+      return ids.length > 0;
+    }
     if (q.type === 'text_input') {
       return typeof state.input.text === 'string' && state.input.text.trim().length > 0;
+    }
+    if (q.type === 'match_pairs') {
+      const pairs = state.input.matchPairs ?? [];
+      return 'pairs' in q && Array.isArray(q.pairs) && pairs.length === q.pairs.length;
+    }
+    if (q.type === 'order_items') {
+      const ordered = state.input.orderedIds ?? [];
+      return 'items' in q && Array.isArray(q.items) && ordered.length === q.items.length;
+    }
+    if (q.type === 'sentence_builder') {
+      const order = state.input.sentenceOrder ?? [];
+      return 'answer' in q && Array.isArray(q.answer) && order.length === q.answer.length;
     }
     return false;
   }, [session, currentQuestionIndex, currentQuestion]);

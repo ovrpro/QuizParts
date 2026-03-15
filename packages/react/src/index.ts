@@ -20,3 +20,6 @@ export { Feedback } from './components/Feedback.js';
 export { Progress } from './components/Progress.js';
 export { TextInput } from './components/TextInput.js';
 export { NextButton } from './components/NextButton.js';
+export { MatchPairs } from './components/MatchPairs.js';
+export { OrderList } from './components/OrderList.js';
+export { SentenceBuilder } from './components/SentenceBuilder.js';

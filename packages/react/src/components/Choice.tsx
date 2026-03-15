@@ -7,7 +7,7 @@ export interface ChoiceProps {
 }
 
 export const Choice = ({ choiceId, children }: ChoiceProps) => {
-  const { question, selectedChoiceId, selectChoice, isSubmitted } = useQuestion();
+  const { question, selectedChoiceId, selectedChoiceIds, selectChoice, toggleChoice, isSubmitted } = useQuestion();
   if (!question || (question.type !== 'multiple_choice' && question.type !== 'multi_select'))
     return null;
 
@@ -15,10 +15,19 @@ export const Choice = ({ choiceId, children }: ChoiceProps) => {
     'choices' in question ? question.choices.find((c) => c.id === choiceId) : null;
   if (!choice) return null;
 
-  const selected = selectedChoiceId === choiceId;
+  const isMultiSelect = question.type === 'multi_select';
+  const selected = isMultiSelect
+    ? selectedChoiceIds.includes(choiceId)
+    : selectedChoiceId === choiceId;
   const disabled = isSubmitted;
-  const showCorrect = isSubmitted && 'answer' in question && question.answer === choiceId;
+  const answerIds = isMultiSelect && 'answer' in question ? (question.answer as string[]) : [];
+  const showCorrect = isSubmitted && (isMultiSelect ? answerIds.includes(choiceId) : (question as { answer: string }).answer === choiceId);
   const showIncorrect = isSubmitted && selected && !showCorrect;
+  const handleClick = () => {
+    if (disabled) return;
+    if (isMultiSelect) toggleChoice(choiceId);
+    else selectChoice(choiceId);
+  };
 
   return (
     <button
@@ -33,11 +42,11 @@ export const Choice = ({ choiceId, children }: ChoiceProps) => {
       {...(showIncorrect && { 'data-incorrect': true })}
       {...(disabled && { 'data-disabled': true })}
       disabled={disabled}
-      onClick={() => !disabled && selectChoice(choiceId)}
+      onClick={handleClick}
       onKeyDown={(e: React.KeyboardEvent) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          if (!disabled) selectChoice(choiceId);
+          handleClick();
         }
       }}
     >

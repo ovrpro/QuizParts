@@ -159,12 +159,27 @@ function validateOrderItems(q: Record<string, unknown>, basePath: string): Valid
   return errors;
 }
 
+function validateSentenceBuilder(q: Record<string, unknown>, basePath: string): ValidationError[] {
+  const errors: ValidationError[] = [];
+  if (!isString(q.prompt)) {
+    errors.push(err(`${basePath}.prompt`, 'prompt must be a string'));
+  }
+  if (!isArray(q.tiles) || q.tiles.length === 0) {
+    errors.push(err(`${basePath}.tiles`, 'tiles must be a non-empty array of strings'));
+  }
+  if (!isArray(q.answer)) {
+    errors.push(err(`${basePath}.answer`, 'answer must be an array of strings (correct order)'));
+  }
+  return errors;
+}
+
 const QUESTION_TYPES = new Set([
   'multiple_choice',
   'multi_select',
   'text_input',
   'match_pairs',
   'order_items',
+  'sentence_builder',
 ]);
 
 function validateQuestion(q: unknown, index: number): QuizQuestion | ValidationError[] {
@@ -198,6 +213,9 @@ function validateQuestion(q: unknown, index: number): QuizQuestion | ValidationE
       break;
     case 'order_items':
       typeErrors = validateOrderItems(q, basePath);
+      break;
+    case 'sentence_builder':
+      typeErrors = validateSentenceBuilder(q, basePath);
       break;
     default:
       typeErrors = [err(`${basePath}.type`, 'Unknown question type')];

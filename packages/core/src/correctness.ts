@@ -32,10 +32,16 @@ export const checkCorrectness = (
       );
       return pairs.every(([l, r]) => normalizedAnswer.has(`${l}:${r}`));
     }
-    case 'order_items':
+    case 'order_items': {
       const ordered = input.orderedIds ?? [];
       if (ordered.length !== question.answer.length) return false;
       return ordered.every((id, i) => id === question.answer[i]);
+    }
+    case 'sentence_builder': {
+      const order = input.sentenceOrder ?? [];
+      if (order.length !== question.answer.length) return false;
+      return order.every((val, i) => val === question.answer[i]);
+    }
     default:
       return false;
   }

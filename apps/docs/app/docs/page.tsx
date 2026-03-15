@@ -13,12 +13,15 @@ export default function DocsPage() {
           <strong>@quizparts/core</strong> — Session state, <code>createQuizSession</code>, actions (<code>selectChoice</code>, <code>submitAnswer</code>, <code>goToNextQuestion</code>, etc.), and <code>checkCorrectness</code>.
         </li>
         <li>
-          <strong>@quizparts/react</strong> — <code>QuizProvider</code>, <code>QuizRoot</code>, and primitives: <code>Progress</code>, <code>Question</code>, <code>Prompt</code>, <code>Choices</code>, <code>Choice</code>, <code>TextInput</code>, <code>SubmitButton</code>, <code>NextButton</code>, <code>Feedback</code>.
+          <strong>@quizparts/react</strong> — <code>QuizProvider</code>, <code>QuizRoot</code>, and primitives: <code>Progress</code>, <code>Question</code>, <code>Prompt</code>, <code>Choices</code>, <code>Choice</code>, <code>TextInput</code>, <code>MatchPairs</code>, <code>OrderList</code>, <code>SentenceBuilder</code>, <code>SubmitButton</code>, <code>NextButton</code>, <code>Feedback</code>.
         </li>
         <li>
           <strong>@quizparts/theme</strong> — Theme tokens (placeholder for now); theme switching is planned for Storybook and the Playground.
         </li>
       </ul>
+
+      <h2 style={{ marginTop: '1.5rem' }}>Interaction types</h2>
+      <p><a href="/docs/interactions">Interactions</a> — Multiple choice, multi select, match pairs, order items, sentence builder. Schema examples and React usage for each.</p>
 
       <h2 style={{ marginTop: '1.5rem' }}>Explore</h2>
       <ul>

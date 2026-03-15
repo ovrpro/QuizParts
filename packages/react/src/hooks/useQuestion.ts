@@ -1,7 +1,7 @@
 import { useQuizContext } from './useQuizContext.js';
 
 export const useQuestion = () => {
-  const { session, submitAnswer, selectChoice, setTextValue } = useQuizContext();
+  const { session, submitAnswer, selectChoice, toggleChoice, setTextValue, setMatchPairs: setMatchPairsContext, setOrderedIds: setOrderedIdsContext, setSentenceOrder: setSentenceOrderContext } = useQuizContext();
   const idx = session.currentQuestionIndex;
   const question = session.quiz.questions[idx] ?? null;
   const questionState = session.questionStates[idx] ?? null;
@@ -21,7 +21,13 @@ export const useQuestion = () => {
       selectChoice: () => {},
       toggleChoice: () => {},
       setTextValue: () => {},
-      submit: () => ({ correct: false }),
+      setMatchPairs: () => {},
+      setOrderedIds: () => {},
+      setSentenceOrder: () => {},
+      matchPairs: [],
+      orderedIds: [],
+      sentenceOrder: [],
+      submit: () => ({ correct: false } as { correct: boolean }),
     };
   }
 
@@ -39,6 +45,9 @@ export const useQuestion = () => {
       ? questionState.input.selectedChoiceIds ?? []
       : [];
   const textValue = question.type === 'text_input' ? (questionState.input.text ?? '') : '';
+  const matchPairs = question.type === 'match_pairs' ? (questionState.input.matchPairs ?? []) : [];
+  const orderedIds = question.type === 'order_items' ? (questionState.input.orderedIds ?? []) : [];
+  const sentenceOrder = question.type === 'sentence_builder' ? (questionState.input.sentenceOrder ?? []) : [];
 
   const feedback = isSubmitted
     ? {
@@ -55,13 +64,19 @@ export const useQuestion = () => {
     selectedChoiceId,
     selectedChoiceIds,
     textValue,
+    matchPairs,
+    orderedIds,
+    sentenceOrder,
     isSubmitted,
     isCorrect,
     isIncorrect,
     feedback,
     selectChoice,
-    toggleChoice: selectChoice,
+    toggleChoice,
     setTextValue,
+    setMatchPairs: setMatchPairsContext,
+    setOrderedIds: setOrderedIdsContext,
+    setSentenceOrder: setSentenceOrderContext,
     submit: submitAnswer,
   };
 };

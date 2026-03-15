@@ -69,13 +69,24 @@ export interface OrderItemsQuestion {
   explanation?: string;
 }
 
+/** Sentence builder: tiles in correct order */
+export interface SentenceBuilderQuestion {
+  type: 'sentence_builder';
+  id: string;
+  prompt: string;
+  tiles: string[];
+  answer: string[];
+  explanation?: string;
+}
+
 /** Union of all v1 question types */
 export type QuizQuestion =
   | MultipleChoiceQuestion
   | MultiSelectQuestion
   | TextInputQuestion
   | MatchPairsQuestion
-  | OrderItemsQuestion;
+  | OrderItemsQuestion
+  | SentenceBuilderQuestion;
 
 /** Root quiz shape */
 export interface Quiz {

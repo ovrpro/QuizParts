@@ -5,7 +5,11 @@ import type { QuizSession } from '@quizparts/core';
 import {
   createQuizSession,
   selectChoice,
+  toggleChoice,
   setTextInput,
+  setMatchPairs,
+  setOrderedIds,
+  setSentenceOrder as setSentenceOrderCore,
   submitAnswer,
   goToNextQuestion,
   goToPreviousQuestion,
@@ -21,7 +25,11 @@ export interface QuizContextValue {
   goToPreviousQuestion: () => void;
   resetQuiz: () => void;
   selectChoice: (choiceId: string) => void;
+  toggleChoice: (choiceId: string) => void;
   setTextValue: (value: string) => void;
+  setMatchPairs: (pairs: Array<[string, string]>) => void;
+  setOrderedIds: (orderedIds: string[]) => void;
+  setSentenceOrder: (order: string[]) => void;
 }
 
 const QuizContext = createContext<QuizContextValue | null>(null);
@@ -92,9 +100,37 @@ export const QuizProvider = ({
     [session]
   );
 
+  const handleToggleChoice = useCallback(
+    (choiceId: string) => {
+      setSession(toggleChoice(session, session.currentQuestionIndex, choiceId));
+    },
+    [session]
+  );
+
   const handleSetTextValue = useCallback(
     (value: string) => {
       setSession(setTextInput(session, session.currentQuestionIndex, value));
+    },
+    [session]
+  );
+
+  const handleSetMatchPairs = useCallback(
+    (pairs: Array<[string, string]>) => {
+      setSession(setMatchPairs(session, session.currentQuestionIndex, pairs));
+    },
+    [session]
+  );
+
+  const handleSetOrderedIds = useCallback(
+    (orderedIds: string[]) => {
+      setSession(setOrderedIds(session, session.currentQuestionIndex, orderedIds));
+    },
+    [session]
+  );
+
+  const handleSetSentenceOrder = useCallback(
+    (order: string[]) => {
+      setSession(setSentenceOrderCore(session, session.currentQuestionIndex, order));
     },
     [session]
   );
@@ -108,7 +144,11 @@ export const QuizProvider = ({
       goToPreviousQuestion: handleGoToPrevious,
       resetQuiz: handleReset,
       selectChoice: handleSelectChoice,
+      toggleChoice: handleToggleChoice,
       setTextValue: handleSetTextValue,
+      setMatchPairs: handleSetMatchPairs,
+      setOrderedIds: handleSetOrderedIds,
+      setSentenceOrder: handleSetSentenceOrder,
     }),
     [
       session,
@@ -118,7 +158,11 @@ export const QuizProvider = ({
       handleGoToPrevious,
       handleReset,
       handleSelectChoice,
+      handleToggleChoice,
       handleSetTextValue,
+      handleSetMatchPairs,
+      handleSetOrderedIds,
+      handleSetSentenceOrder,
     ]
   );
 

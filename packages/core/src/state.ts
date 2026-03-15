@@ -23,6 +23,8 @@ export interface QuestionInputState {
   matchPairs?: Array<[string, string]>;
   /** order_items: user's ordered id list */
   orderedIds?: string[];
+  /** sentence_builder: user's ordered tile values */
+  sentenceOrder?: string[];
 }
 
 /** State for one question in the session */

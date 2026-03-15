@@ -24,4 +24,5 @@ export type {
   MatchPairsQuestion,
   OrderItem,
   OrderItemsQuestion,
+  SentenceBuilderQuestion,
 } from './types.js';

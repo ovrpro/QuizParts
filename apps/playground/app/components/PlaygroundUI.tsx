@@ -2,8 +2,11 @@
 
 import type { ParseResult } from '@quizparts/schema';
 import { QuizProvider, QuizRoot, Progress } from '@quizparts/react';
+import { defaultTheme, darkTheme, tokensToCssVars } from '@quizparts/theme';
 import { QuizRunner } from './QuizRunner';
 import type { Sample } from '../samples/defaultQuiz';
+
+const themeMap = { default: defaultTheme, dark: darkTheme } as const;
 
 export interface PlaygroundUIProps {
   editorValue: string;
@@ -87,10 +90,13 @@ export const PlaygroundUI = ({
         aria-label="Preview"
         data-theme={theme}
         style={{
-          border: '1px solid #ccc',
+          ...tokensToCssVars(themeMap[theme]),
+          border: `1px solid var(--qp-colors-border, #e2e8f0)`,
           borderRadius: '6px',
           padding: '1rem',
           overflow: 'auto',
+          background: 'var(--qp-colors-background)',
+          color: 'var(--qp-colors-text)',
         }}
         className="playground-preview"
       >

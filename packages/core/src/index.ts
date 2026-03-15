@@ -21,6 +21,7 @@ export {
   setTextInput,
   setMatchPairs,
   setOrderedIds,
+  setSentenceOrder,
   submitAnswer,
   goToNextQuestion,
   goToPreviousQuestion,

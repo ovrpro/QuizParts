@@ -6,6 +6,9 @@ import {
   Choices,
   Choice,
   TextInput,
+  MatchPairs,
+  OrderList,
+  SentenceBuilder,
   SubmitButton,
   NextButton,
   Feedback,
@@ -40,6 +43,9 @@ export const QuizRunner = () => {
         </Choices>
       )}
       {currentQuestion.type === 'text_input' && <TextInput />}
+      {currentQuestion.type === 'match_pairs' && <MatchPairs />}
+      {currentQuestion.type === 'order_items' && <OrderList />}
+      {currentQuestion.type === 'sentence_builder' && <SentenceBuilder />}
       <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
         <SubmitButton />
         <NextButton />

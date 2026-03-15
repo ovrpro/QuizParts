@@ -95,6 +95,23 @@ export const setOrderedIds = (
   return { ...session, questionStates: next };
 };
 
+/** Set sentence order (sentence_builder). */
+export const setSentenceOrder = (
+  session: QuizSession,
+  questionIndex: number,
+  sentenceOrder: string[]
+): QuizSession => {
+  if (questionIndex < 0 || questionIndex >= session.questionStates.length) {
+    return session;
+  }
+  const next = cloneStates(session.questionStates);
+  next[questionIndex] = {
+    ...next[questionIndex]!,
+    input: { ...next[questionIndex]!.input, sentenceOrder },
+  };
+  return { ...session, questionStates: next };
+};
+
 /** Submit the current question. Returns new session and whether the answer was correct. */
 export const submitAnswer = (
   session: QuizSession
