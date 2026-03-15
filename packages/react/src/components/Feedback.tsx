@@ -15,7 +15,7 @@ export const Feedback = ({ as: Component = 'div' }: FeedbackProps) => {
       role="status"
     >
       {feedback.isCorrect ? 'Correct!' : 'Incorrect.'}
-      {feedback.explanation != null && feedback.explanation !== '' && (
+      {feedback.isCorrect && feedback.explanation != null && feedback.explanation !== '' && (
         <p data-quiz-explanation>{feedback.explanation}</p>
       )}
     </Component>

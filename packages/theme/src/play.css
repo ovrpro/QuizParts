@@ -1,8 +1,12 @@
 /* QuizParts – theme styles. Use with theme CSS variables set on an ancestor. */
 
 [data-quiz-root] {
+  box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  max-width: var(--qp-layout-maxContentWidth);
+  margin-inline: auto;
+  padding-inline: var(--qp-layout-mobileSpacing);
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
   line-height: var(--qp-foundation-typography-lineHeight);
@@ -14,7 +18,20 @@
     linear-gradient(160deg, color-mix(in srgb, var(--qp-semantic-color-background) 92%, white) 0%, var(--qp-semantic-color-background) 100%);
 }
 
+[data-quiz-root] *,
+[data-quiz-root] *::before,
+[data-quiz-root] *::after {
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  [data-quiz-root] {
+    padding-inline: var(--qp-layout-desktopSpacing);
+  }
+}
+
 [data-quiz-question] {
+  min-width: 0;
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--qp-semantic-color-surface) 92%, white) 0%, var(--qp-semantic-color-surface) 100%);
   border: 1px solid color-mix(in srgb, var(--qp-semantic-color-border) 78%, white);
@@ -46,9 +63,20 @@
 }
 
 [data-quiz-question-footer] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--qp-foundation-spacing-md);
   margin-top: var(--qp-foundation-spacing-md);
   padding-top: var(--qp-foundation-spacing-md);
   border-top: 1px solid color-mix(in srgb, var(--qp-semantic-color-border) 60%, transparent);
+}
+
+[data-quiz-question-footer] [data-quiz-submit],
+[data-quiz-question-footer] [data-quiz-next],
+[data-quiz-question-footer] [data-quiz-continue] {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 [data-quiz-instruction] {
@@ -113,7 +141,7 @@
   justify-content: center;
   min-height: var(--qp-components-button-height);
   margin-top: var(--qp-foundation-spacing-xl);
-  margin-left: var(--qp-foundation-spacing-lg);
+  margin-left: var(--qp-foundation-spacing-md);
   padding: var(--qp-foundation-spacing-md) var(--qp-components-button-paddingX);
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
@@ -251,6 +279,7 @@
   justify-content: center;
   min-height: var(--qp-components-button-height);
   margin-top: var(--qp-foundation-spacing-xl);
+  margin-right: var(--qp-foundation-spacing-md);
   padding: var(--qp-foundation-spacing-md) var(--qp-components-button-paddingX);
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
@@ -291,7 +320,7 @@
   justify-content: center;
   min-height: var(--qp-components-button-height);
   margin-top: var(--qp-foundation-spacing-xl);
-  margin-left: var(--qp-foundation-spacing-lg);
+  margin-left: var(--qp-foundation-spacing-md);
   padding: var(--qp-foundation-spacing-md) var(--qp-components-button-paddingX);
   font-family: var(--qp-foundation-typography-fontFamily);
   font-size: var(--qp-foundation-typography-fontSizeBase);
@@ -416,6 +445,9 @@
 
 [data-order-item] > span:first-child {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 [data-quiz-order-list] button {
@@ -492,6 +524,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
   min-height: var(--qp-a11y-minTapTarget);
   padding: var(--qp-foundation-spacing-md) var(--qp-foundation-spacing-lg);
   font-family: var(--qp-foundation-typography-fontFamily);
@@ -553,6 +586,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
   min-height: var(--qp-a11y-minTapTarget);
   padding: var(--qp-foundation-spacing-sm) var(--qp-foundation-spacing-md);
   font-family: var(--qp-foundation-typography-fontFamily);
