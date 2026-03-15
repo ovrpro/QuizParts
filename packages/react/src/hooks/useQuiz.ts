@@ -1,6 +1,10 @@
 import { useMemo } from 'react';
 import { useQuizContext } from './useQuizContext.js';
 
+/**
+ * Quiz-level state and actions. Use inside QuizProvider.
+ * @returns Current question, canSubmit, submitAnswer, goToNextQuestion, score, etc.
+ */
 export const useQuiz = () => {
   const { session, progress, submitAnswer, goToNextQuestion, goToPreviousQuestion, resetQuiz } =
     useQuizContext();

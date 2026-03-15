@@ -1,7 +1,15 @@
-/** @quizparts/react - React bindings for quiz engine */
+/**
+ * @quizparts/react – React bindings for the quiz engine.
+ *
+ * Wrap your app (or quiz section) in QuizProvider with a parsed quiz; use QuizRoot, Question,
+ * Prompt, Choices, Choice, SubmitButton, Feedback, Progress, etc. for multiple_choice and
+ * multi_select. Use TextInput for text_input, MatchPairs for match_pairs, OrderList for
+ * order_items, SentenceBuilder for sentence_builder. Hooks: useQuiz, useQuestion, useProgress.
+ */
 
 export { CORE_VERSION } from '@quizparts/core';
 
+/** Current React bindings version. */
 export const REACT_VERSION = '0.0.1';
 
 export { QuizProvider, getQuizContext, type QuizContextValue } from './context/QuizContext.js';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SubmitButton } from '@quizparts/react';
+import { Question, Prompt, Choices, Choice, SubmitButton } from '@quizparts/react';
 import { createSessionSelected, getDefaultMockQuiz } from '../mocks/mockQuiz';
 
 const quiz = getDefaultMockQuiz();
@@ -14,12 +14,26 @@ export default meta;
 
 type Story = StoryObj<typeof SubmitButton>;
 
+const withQuestion = () => (
+  <Question>
+    <Prompt />
+    <Choices>
+      <Choice choiceId="a" />
+      <Choice choiceId="b" />
+    </Choices>
+    <SubmitButton />
+  </Question>
+);
+
 export const Disabled: Story = {
-  parameters: {},
+  parameters: { quiz },
+  render: withQuestion,
 };
 
 export const Enabled: Story = {
   parameters: {
+    quiz,
     initialSession: createSessionSelected(quiz),
   },
+  render: withQuestion,
 };

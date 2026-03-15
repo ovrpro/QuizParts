@@ -5,6 +5,7 @@ export interface SubmitButtonProps {
   children?: ReactNode;
 }
 
+/** Submit button for the current question. Disabled until input is valid; use with useQuiz().canSubmit. */
 export const SubmitButton = ({ children = 'Submit' }: SubmitButtonProps) => {
   const { canSubmit, submitAnswer } = useQuiz();
   return (

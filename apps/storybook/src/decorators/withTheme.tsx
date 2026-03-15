@@ -1,7 +1,7 @@
 import type { Decorator } from '@storybook/react';
-import { defaultTheme, darkTheme, tokensToCssVars } from '@quizparts/theme';
+import { defaultTheme, calmTheme, darkTheme, tokensToCssVars } from '@quizparts/theme';
 
-const themes = { default: defaultTheme, dark: darkTheme } as const;
+const themes = { default: defaultTheme, calm: calmTheme, dark: darkTheme } as const;
 type ThemeId = keyof typeof themes;
 
 export const withTheme: Decorator = (Story, context) => {

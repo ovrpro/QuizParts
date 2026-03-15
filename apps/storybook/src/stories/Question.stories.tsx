@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Question, Prompt, Choices, Choice, TextInput as TextInputField, SubmitButton, NextButton, Feedback } from '@quizparts/react';
-import { createMockQuestion } from '../mocks/mockQuiz';
+import {
+  createMockQuestion,
+  createSessionSelected,
+  createSessionSubmittedCorrect,
+  createSessionSubmittedIncorrect,
+} from '../mocks/mockQuiz';
+
+const mcQuiz = createMockQuestion('multiple_choice');
 
 const meta: Meta = {
   title: 'Primitives/Question',
@@ -11,22 +18,46 @@ export default meta;
 
 type Story = StoryObj;
 
-export const MultipleChoice: Story = {
+const mcRender = () => (
+  <Question>
+    <Prompt />
+    <Choices>
+      <Choice choiceId="a" />
+      <Choice choiceId="b" />
+    </Choices>
+    <SubmitButton />
+    <NextButton />
+    <Feedback />
+  </Question>
+);
+
+export const MultipleChoiceDefault: Story = {
+  parameters: { quiz: mcQuiz },
+  render: mcRender,
+};
+
+export const MultipleChoiceSelected: Story = {
   parameters: {
-    quiz: createMockQuestion('multiple_choice'),
+    quiz: mcQuiz,
+    initialSession: createSessionSelected(mcQuiz),
   },
-  render: () => (
-    <Question>
-      <Prompt />
-      <Choices>
-        <Choice choiceId="a" />
-        <Choice choiceId="b" />
-      </Choices>
-      <SubmitButton />
-      <NextButton />
-      <Feedback />
-    </Question>
-  ),
+  render: mcRender,
+};
+
+export const MultipleChoiceCorrect: Story = {
+  parameters: {
+    quiz: mcQuiz,
+    initialSession: createSessionSubmittedCorrect(mcQuiz),
+  },
+  render: mcRender,
+};
+
+export const MultipleChoiceIncorrect: Story = {
+  parameters: {
+    quiz: mcQuiz,
+    initialSession: createSessionSubmittedIncorrect(mcQuiz),
+  },
+  render: mcRender,
 };
 
 export const TextInputQuestion: Story = {

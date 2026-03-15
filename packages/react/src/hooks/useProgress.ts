@@ -1,5 +1,9 @@
 import { useQuizContext } from './useQuizContext.js';
 
+/**
+ * Progress for the current quiz. Use inside QuizProvider.
+ * @returns current, total, percent, answeredCount, score, canGoNext, canGoPrevious, isComplete.
+ */
 export const useProgress = () => {
   const { progress } = useQuizContext();
   const total = progress.total;

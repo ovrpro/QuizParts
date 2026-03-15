@@ -35,13 +35,18 @@ export interface QuizContextValue {
 const QuizContext = createContext<QuizContextValue | null>(null);
 
 export interface QuizProviderProps {
+  /** Parsed quiz (from parseQuiz). */
   quiz: Quiz;
+  /** Zero-based index to start at (default 0). */
   initialQuestionIndex?: number;
   /** Pre-built session (e.g. for Storybook); must match quiz. */
   initialSession?: QuizSession;
   children: ReactNode;
+  /** Called after each submit with whether the answer was correct. */
   onQuestionSubmit?: (correct: boolean) => void;
+  /** Called when the current question index changes. */
   onQuestionChange?: (index: number) => void;
+  /** Called when all questions have been attempted. */
   onComplete?: () => void;
 }
 

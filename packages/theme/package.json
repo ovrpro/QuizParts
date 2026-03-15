@@ -9,11 +9,12 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./play.css": "./dist/play.css"
   },
   "files": ["dist"],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp src/play.css dist/play.css",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

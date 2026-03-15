@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Choice } from '@quizparts/react';
+import { Question, Prompt, Choices, Choice, SubmitButton, Feedback } from '@quizparts/react';
 import {
   getDefaultMockQuiz,
   createSessionSelected,
@@ -19,40 +19,57 @@ export default meta;
 
 type Story = StoryObj<typeof Choice>;
 
+const withQuestion = () => (
+  <Question>
+    <Prompt />
+    <Choices>
+      <Choice choiceId="a" />
+      <Choice choiceId="b" />
+      <Choice choiceId="c" />
+    </Choices>
+    <SubmitButton />
+    <Feedback />
+  </Question>
+);
+
 export const Default: Story = {
-  args: { choiceId: 'b' },
+  parameters: { quiz },
+  render: withQuestion,
 };
 
 export const Selected: Story = {
-  args: { choiceId: 'b' },
   parameters: {
+    quiz,
     initialSession: createSessionSelected(quiz),
   },
+  render: withQuestion,
 };
 
 export const Correct: Story = {
-  args: { choiceId: 'b' },
   parameters: {
+    quiz,
     initialSession: createSessionSubmittedCorrect(quiz),
   },
+  render: withQuestion,
 };
 
 export const Incorrect: Story = {
-  args: { choiceId: 'a' },
   parameters: {
+    quiz,
     initialSession: createSessionSubmittedIncorrect(quiz),
   },
+  render: withQuestion,
 };
 
 export const Disabled: Story = {
-  args: { choiceId: 'a' },
   parameters: {
+    quiz,
     initialSession: createSessionSubmittedCorrect(quiz),
   },
+  render: withQuestion,
 };
 
 export const LongLabel: Story = {
-  args: { choiceId: 'b' },
   parameters: {
     quiz: (() => {
       const q = getDefaultMockQuiz();
@@ -74,4 +91,15 @@ export const LongLabel: Story = {
       return q;
     })(),
   },
+  render: () => (
+    <Question>
+      <Prompt />
+      <Choices>
+        <Choice choiceId="a" />
+        <Choice choiceId="b" />
+      </Choices>
+      <SubmitButton />
+      <Feedback />
+    </Question>
+  ),
 };

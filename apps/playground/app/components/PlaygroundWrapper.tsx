@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { parseQuiz, type ParseResult } from '@quizparts/schema';
 import { getDefaultEditorValue, samples } from '../samples/defaultQuiz';
-import { PlaygroundUI } from './PlaygroundUI';
+import { PlaygroundUI, type ThemeId } from './PlaygroundUI';
 
 const PARSE_DEBOUNCE_MS = 450;
 
@@ -24,7 +24,7 @@ const parseEditorValue = (raw: string): ParseResult => {
 export const PlaygroundWrapper = () => {
   const [editorValue, setEditorValue] = useState(getDefaultEditorValue);
   const [parseResult, setParseResult] = useState<ParseResult | null>(null);
-  const [theme, setTheme] = useState<'default' | 'dark'>('default');
+  const [theme, setTheme] = useState<ThemeId>('default');
 
   useEffect(() => {
     const t = setTimeout(

@@ -1,67 +1,158 @@
-/** Theme token shape for @quizparts/theme */
+/** Design system token layers for @quizparts/theme */
 
-export interface ColorTokens {
-  primary: string;
-  primaryContrast: string;
-  background: string;
-  surface: string;
-  text: string;
-  textMuted: string;
-  correct: string;
-  incorrect: string;
-  border: string;
+/** Raw design primitives (palette, scale). */
+export interface FoundationTokens {
+  colors: Record<string, string>;
+  spacing: Record<string, string>;
+  radius: Record<string, string>;
+  shadow: Record<string, string>;
+  typography: {
+    fontFamily: string;
+    fontSizeBase: string;
+    fontSizeSm: string;
+    fontSizeLg: string;
+    fontWeightNormal: number;
+    fontWeightBold: number;
+    lineHeight: number;
+  };
 }
 
-export interface SpacingTokens {
-  xs: string;
-  sm: string;
-  md: string;
-  lg: string;
-  xl: string;
+/** Semantic roles (meaningful naming for theming). */
+export interface SemanticTokens {
+  color: {
+    background: string;
+    surface: string;
+    primary: string;
+    primaryContrast: string;
+    secondary: string;
+    text: string;
+    textMuted: string;
+    success: string;
+    successSoft: string;
+    danger: string;
+    dangerSoft: string;
+    warning: string;
+    border: string;
+  };
 }
 
-export interface RadiusTokens {
-  sm: string;
-  md: string;
-  lg: string;
-  full: string;
+/** Component-level styling (overridable per component). */
+export interface ComponentTokens {
+  choice: {
+    padding: string;
+    radius: string;
+    borderWidth: string;
+    minHeight: string;
+  };
+  button: {
+    height: string;
+    radius: string;
+    paddingX: string;
+  };
+  card: {
+    padding: string;
+    radius: string;
+    shadow: string;
+  };
+  progress: {
+    height: string;
+    radius: string;
+  };
+  feedback: {
+    padding: string;
+    radius: string;
+  };
 }
 
-export interface TypographyTokens {
-  fontFamily: string;
-  fontSizeBase: string;
-  fontSizeSm: string;
-  fontSizeLg: string;
-  fontWeightNormal: number;
-  fontWeightBold: number;
-  lineHeight: number;
+/** Standardized choice/feedback states. */
+export interface StateTokens {
+  correct: {
+    background: string;
+    border: string;
+    text: string;
+  };
+  incorrect: {
+    background: string;
+    border: string;
+    text: string;
+  };
+  selected: {
+    background: string;
+    border: string;
+  };
 }
 
+/** Motion and animation. */
 export interface MotionTokens {
   durationFast: string;
   durationNormal: string;
   durationSlow: string;
+  easingStandard: string;
+  easingBouncy: string;
+  successAnimation: 'bounce' | 'none';
+  errorAnimation: 'shake' | 'none';
 }
 
-export interface ShadowTokens {
-  sm: string;
-  md: string;
+/** Interaction feedback (scale, bounce, shake). */
+export interface InteractionTokens {
+  hoverScale: number;
+  pressScale: number;
+  correctBounce: boolean;
+  incorrectShake: boolean;
 }
 
+/** Layout and responsive. */
+export interface LayoutTokens {
+  maxContentWidth: string;
+  mobileSpacing: string;
+  desktopSpacing: string;
+}
+
+/** Accessibility constraints. */
+export interface A11yTokens {
+  minTapTarget: string;
+  minContrast: number;
+}
+
+/** Decoration (icons, emoji). */
+export interface DecorationTokens {
+  showIcons: boolean;
+  correctIcon: string;
+  incorrectIcon: string;
+}
+
+/** Full theme: foundation → semantic → components → states + motion/interaction/layout/a11y/decoration. */
 export interface ThemeTokens {
-  colors: ColorTokens;
-  spacing: SpacingTokens;
-  radius: RadiusTokens;
-  typography: TypographyTokens;
+  foundation: FoundationTokens;
+  semantic: SemanticTokens;
+  components: ComponentTokens;
+  states: StateTokens;
   motion: MotionTokens;
-  shadow: ShadowTokens;
+  interaction: InteractionTokens;
+  layout: LayoutTokens;
+  a11y: A11yTokens;
+  decoration: DecorationTokens;
 }
 
+/** Partial theme overrides; deep-merged with a base theme by createTheme/mergeTheme. */
 export type ThemeOverrides = Partial<{
-  colors: Partial<ColorTokens>;
-  spacing: Partial<SpacingTokens>;
-  radius: Partial<RadiusTokens>;
-  typography: Partial<TypographyTokens>;
+  foundation: Partial<FoundationTokens>;
+  semantic: Partial<SemanticTokens>;
+  components: Partial<ComponentTokens>;
+  states: Partial<StateTokens>;
   motion: Partial<MotionTokens>;
-  shadow: Partial<ShadowTokens>;
+  interaction: Partial<InteractionTokens>;
+  layout: Partial<LayoutTokens>;
+  a11y: Partial<A11yTokens>;
+  decoration: Partial<DecorationTokens>;
 }>;
+
+/** Legacy flat shape (deprecated): use ThemeTokens. Kept for type compatibility during migration. */
+export interface LegacyThemeTokens {
+  colors: Record<string, string>;
+  spacing: Record<string, string>;
+  radius: Record<string, string>;
+  typography: Record<string, string | number>;
+  motion: Record<string, string>;
+  shadow: Record<string, string>;
+}

@@ -1,3 +1,5 @@
+import '@quizparts/theme/play.css';
+
 export default function RootLayout({
   children,
 }: {

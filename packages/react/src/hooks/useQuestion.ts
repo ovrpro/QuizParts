@@ -1,5 +1,9 @@
 import { useQuizContext } from './useQuizContext.js';
 
+/**
+ * Current question state and input setters. Use inside QuizProvider for question-type-specific UI.
+ * @returns question, selectedChoiceId/selectedChoiceIds, textValue, matchPairs, orderedIds, sentenceOrder, feedback, selectChoice, toggleChoice, setTextValue, setMatchPairs, setOrderedIds, setSentenceOrder.
+ */
 export const useQuestion = () => {
   const { session, submitAnswer, selectChoice, toggleChoice, setTextValue, setMatchPairs: setMatchPairsContext, setOrderedIds: setOrderedIdsContext, setSentenceOrder: setSentenceOrderContext } = useQuizContext();
   const idx = session.currentQuestionIndex;

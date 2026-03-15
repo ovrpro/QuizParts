@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Feedback } from '@quizparts/react';
+import { Question, Prompt, Choices, Choice, SubmitButton, Feedback } from '@quizparts/react';
 import {
   getDefaultMockQuiz,
   createSessionSubmittedCorrect,
@@ -18,18 +18,35 @@ export default meta;
 
 type Story = StoryObj<typeof Feedback>;
 
+const withQuestion = () => (
+  <Question>
+    <Prompt />
+    <Choices>
+      <Choice choiceId="a" />
+      <Choice choiceId="b" />
+    </Choices>
+    <SubmitButton />
+    <Feedback />
+  </Question>
+);
+
 export const BeforeSubmit: Story = {
-  parameters: {},
+  parameters: { quiz },
+  render: withQuestion,
 };
 
 export const Correct: Story = {
   parameters: {
+    quiz,
     initialSession: createSessionSubmittedCorrect(quiz),
   },
+  render: withQuestion,
 };
 
 export const Incorrect: Story = {
   parameters: {
+    quiz,
     initialSession: createSessionSubmittedIncorrect(quiz),
   },
+  render: withQuestion,
 };

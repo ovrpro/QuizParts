@@ -2,10 +2,12 @@ import type { ReactNode } from 'react';
 import { useQuestion } from '../hooks/useQuestion.js';
 
 export interface ChoiceProps {
+  /** Id of the choice (must match question.choices[].id). */
   choiceId: string;
   children?: ReactNode;
 }
 
+/** Renders one multiple_choice or multi_select option. Use inside Choices; toggles/selects on click. */
 export const Choice = ({ choiceId, children }: ChoiceProps) => {
   const { question, selectedChoiceId, selectedChoiceIds, selectChoice, toggleChoice, isSubmitted } = useQuestion();
   if (!question || (question.type !== 'multiple_choice' && question.type !== 'multi_select'))

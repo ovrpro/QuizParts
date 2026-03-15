@@ -66,7 +66,7 @@ export const MatchPairs = () => {
                   onClick={() => handleLeftClick(left)}
                   disabled={disabled}
                   data-match-left
-                  data-selected={selectedLeft === left}
+                  {...(selectedLeft === left && { 'data-selected': '' })}
                   aria-pressed={selectedLeft === left}
                   style={{
                     padding: '0.5rem 0.75rem',
