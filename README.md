@@ -63,9 +63,9 @@ export default function App() {
 
 | Package | Description |
 |---------|-------------|
-| **`@quizparts/react`** | **Start here.** React provider, components, and hooks for web (QuizProvider, QuizRoot, Question, Choices, Feedback, etc.). Includes engine + schema. |
+| **`@quizparts/react`** | **Start here.** React provider, components, and hooks for web (QuizProvider, QuizRoot, Card, Question, Choices, Feedback, etc.). Includes engine + schema. |
 | `@quizparts/theme` | Theme tokens and default CSS (play.css) for web. Use with `@quizparts/react`. |
-| `@quizparts/react-native` | React Native components and theme for mobile. |
+| `@quizparts/react-native` | React Native components and theme for mobile (Card, QuizFlow, ThemeProvider, etc.). |
 | `@quizparts/schema` | Quiz and question types, validation, `parseQuiz` / `createQuizFromJson`. Dependency of react; use directly for headless/custom UIs. |
 | `@quizparts/core` | Headless quiz engine (session, submit, progress). Dependency of react; use directly for non-React or custom UIs. |
 

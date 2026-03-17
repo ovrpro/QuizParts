@@ -35,6 +35,7 @@ export { DEFAULT_INSTRUCTIONS } from './constants/defaultInstructions.js';
 export { defaultTheme } from '@quizparts/theme';
 export { createQuizFromJson } from '@quizparts/schema';
 export { Hint } from './components/Hint.js';
+export { Card } from './components/Card.js';
 export { Choices } from './components/Choices.js';
 export { Choice } from './components/Choice.js';
 export { ChoiceIndicator } from './components/ChoiceIndicator.js';

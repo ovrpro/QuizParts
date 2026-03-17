@@ -40,7 +40,7 @@ const quiz = result.success ? result.data : null;`}
       </pre>
 
       <h2 style={{ marginTop: '1.5rem' }}>Render with React</h2>
-      <p>Wrap your app in <code>QuizProvider</code> and use the primitives: <code>Progress</code>, <code>Question</code>, <code>Prompt</code>, <code>Choices</code> / <code>Choice</code>, <code>SubmitButton</code>, <code>NextButton</code>, <code>Feedback</code>.</p>
+      <p>Wrap your app in <code>QuizProvider</code> and use the primitives: <code>Card</code>, <code>Progress</code>, <code>Question</code>, <code>Prompt</code>, <code>Choices</code> / <code>Choice</code>, <code>SubmitButton</code>, <code>NextButton</code>, <code>Feedback</code>.</p>
       <pre style={{ background: '#f5f5f5', padding: '1rem', overflow: 'auto', borderRadius: '4px', fontSize: '13px' }}>
 {`import { QuizProvider, QuizRoot, Progress, Question, Prompt, Choices, Choice, SubmitButton, NextButton, Feedback, useQuiz } from '@quizparts/react';
 

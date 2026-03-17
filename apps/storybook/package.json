@@ -1,6 +1,6 @@
 {
   "name": "@quizparts/storybook",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "@quizparts/core": "0.0.1",
-    "@quizparts/react": "0.0.1",
+    "@quizparts/react": "0.0.2",
     "@quizparts/schema": "0.0.1",
-    "@quizparts/theme": "0.0.1",
+    "@quizparts/theme": "0.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

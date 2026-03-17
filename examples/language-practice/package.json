@@ -1,6 +1,6 @@
 {
   "name": "@quizparts/example-language-practice",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,7 +11,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@quizparts/react": "0.0.1",
+    "@quizparts/react": "0.0.2",
     "@quizparts/schema": "0.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

@@ -1,6 +1,6 @@
 {
   "name": "@quizparts/react-native",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React Native components for QuizParts",
   "license": "MIT",
   "repository": {
@@ -11,7 +11,13 @@
   "bugs": {
     "url": "https://github.com/ovrpro/QuizParts/issues"
   },
-  "keywords": ["quiz", "react-native", "components", "learning", "expo"],
+  "keywords": [
+    "quiz",
+    "react-native",
+    "components",
+    "learning",
+    "expo"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -21,8 +27,12 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
-  "publishConfig": { "access": "public" },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
     "lint": "eslint src --ext .ts,.tsx",

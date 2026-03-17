@@ -1,6 +1,6 @@
 {
   "name": "@quizparts/theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Theme tokens and default CSS for QuizParts",
   "license": "MIT",
   "repository": {
@@ -11,7 +11,13 @@
   "bugs": {
     "url": "https://github.com/ovrpro/QuizParts/issues"
   },
-  "keywords": ["quiz", "theme", "css", "design-tokens", "learning"],
+  "keywords": [
+    "quiz",
+    "theme",
+    "css",
+    "design-tokens",
+    "learning"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,8 +28,12 @@
     },
     "./play.css": "./dist/play.css"
   },
-  "files": ["dist"],
-  "publishConfig": { "access": "public" },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && cp src/play.css dist/play.css",
     "lint": "eslint src --ext .ts",
